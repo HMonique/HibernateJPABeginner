@@ -14,14 +14,13 @@ public class UserController {
 
 //       addUser(factory,session);
 //
-//        findUser(factory,session,3);
+        findUser(factory,session,3);
 //
 //        updateUser(session,3);
 //
 //        deleteUser(session,4);
     }
     public static void addUser(SessionFactory factory, Session session) {
-
 
         Transaction transaction = session.beginTransaction();
         User uOne = new User();
@@ -60,6 +59,21 @@ public class UserController {
 
         transaction.commit();
         System.out.println("successfully saved");
+        factory.close();
+        session.close();
+    }
+    public static void findUser(SessionFactory factory,Session session,int userId){
+//       Todo comment out addUser method and uncomment findUser method
+
+        Transaction tx = session.beginTransaction();
+
+        User u = session.get(User.class, userId);
+        System.out.println("FullName: " + u.getFullName());
+        System.out.println("Email: " + u.getEmail());
+        System.out.println("password: " + u.getPassword());
+
+        //Close resources
+        tx.commit();
         factory.close();
         session.close();
     }
