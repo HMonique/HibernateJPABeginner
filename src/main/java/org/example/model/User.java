@@ -1,6 +1,14 @@
 package org.example.model;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "USER")
 
 public class User {
+    @Column(name = "USER_ID")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer id;
     private String fullName;
     private String email;
@@ -75,3 +83,7 @@ public class User {
         this.city = city;
     }
 }
+
+
+
+
