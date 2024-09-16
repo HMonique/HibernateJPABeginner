@@ -18,7 +18,7 @@ public class UserController {
 //
 //        updateUser(session,3);
 //
-//        deleteUser(session,4);
+        deleteUser(session,4);
     }
     public static void addUser(SessionFactory factory, Session session) {
 
@@ -77,6 +77,20 @@ public class UserController {
         factory.close();
         session.close();
     }
+    public static void deleteUser(Session session,int userId){
+        // Todo comment out updateUser method and uncomment deleteUser method
+
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Transaction tx = session.beginTransaction();
+        User u = new User();
+        u.setId(userId);
+        session.remove(u);
+        tx.commit();
+        session.close();
+        factory.close();
+    }
+
+
 }
 
 
